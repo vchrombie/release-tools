@@ -15,8 +15,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - name: Install poetry
-        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - name: Install and set up Poetry
+        uses: vchrombie/poetry-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Build distributions
         run: poetry build
       - name: Upload distribution artifacts
@@ -80,8 +82,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-      - name: Install poetry
-        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      - name: Install and set up Poetry
+        uses: vchrombie/poetry-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Configure pypi credentials
         env:
           PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
