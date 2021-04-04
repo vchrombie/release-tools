@@ -16,7 +16,9 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install poetry
-        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          echo "PATH=$HOME/.poetry/bin:$PATH" >> $GITHUB_ENV
       - name: Build distributions
         run: poetry build
       - name: Upload distribution artifacts
@@ -81,7 +83,9 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install poetry
-        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+          echo "PATH=$HOME/.poetry/bin:$PATH" >> $GITHUB_ENV
       - name: Configure pypi credentials
         env:
           PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
